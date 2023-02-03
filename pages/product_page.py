@@ -14,9 +14,11 @@ class BasketPage(BasePage):
         find_the_message = self.browser.find_element(*BasketButtonLocators.ADD_TO_CART_MESSAGE)
         # print(find_the_message.text.encode("utf-8"))
         # print(find_the_name_of_book.text.encode("utf-8"))
-        assert find_the_name_of_book.text.encode("utf-8") in find_the_message.text.encode("utf-8"), \
-            "In the message does not has the name of book"
+        the_message = "{} has been added to your basket.".format(find_the_name_of_book.text)
+        assert find_the_message.text == the_message, "The message does not match with correct message!"
         print("message_about_added_to_basket --- success")
+
+
 
     def message_about_cost_of_basket(self):
         find_the_cost_of_book = self.browser.find_element(*BasketButtonLocators.PRICE_OF_BOOK)
